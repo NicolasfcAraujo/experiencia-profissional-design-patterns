@@ -19,6 +19,21 @@ export class Checkout implements OnInit {
 
   readonly label = METODO_LABEL;
 
+  // Logo de cada provedor (servidos de public/logos).
+  readonly logo: Record<Metodo, string> = {
+    STRIPE: 'logos/stripe.png',
+    MERCADO_PAGO: 'logos/mercadopago.png',
+    PIX: 'logos/pix.png'
+  };
+
+  // Realce na cor característica da marca quando selecionado (classes literais p/ o Tailwind).
+  readonly estilo: Record<Metodo, string> = {
+    STRIPE: 'border-2 border-[#635BFF] bg-[#635BFF]/10',
+    MERCADO_PAGO: 'border-2 border-[#009EE3] bg-[#009EE3]/10',
+    PIX: 'border-2 border-[#32BCAD] bg-[#32BCAD]/10'
+  };
+  readonly estiloInativo = 'border border-slate-300 hover:bg-slate-50';
+
   metodos = signal<Metodo[]>([]);
   resultado = signal<PagamentoResponse | null>(null);
   comparativo = signal<PagamentoResponse[] | null>(null);

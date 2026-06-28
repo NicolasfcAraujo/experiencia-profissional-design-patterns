@@ -48,13 +48,14 @@
         <button
           type="button"
           (click)="metodo = m"
+          [attr.aria-label]="label[m]"
+          [attr.aria-pressed]="metodo === m"
           [class]="
-            metodo === m
-              ? 'rounded-md border-2 border-slate-900 bg-slate-900 px-3 py-2 text-sm text-white'
-              : 'rounded-md border border-slate-300 px-3 py-2 text-sm hover:bg-slate-50'
+            'flex h-14 items-center justify-center rounded-md px-3 transition-colors ' +
+            (metodo === m ? estilo[m] : estiloInativo)
           "
         >
-          {{ label[m] }}
+          <img [src]="logo[m]" [alt]="label[m]" class="h-6 w-auto" />
         </button>
       }
     </div>
