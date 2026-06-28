@@ -46,6 +46,16 @@ public class PagamentoFacade {
         return resultado;
     }
 
+    /** Métodos disponíveis — derivados dos adapters registrados, não de uma lista fixa. */
+    public List<Metodo> metodosSuportados() {
+        return gateways.keySet().stream().sorted().toList();
+    }
+
+    /** Histórico persistido no H2. */
+    public List<PagamentoEntity> historico() {
+        return repository.findAll();
+    }
+
     private PagamentoEntity paraEntidade(Pagamento pagamento, ResultadoPagamento resultado) {
         return PagamentoEntity.builder()
                 .metodo(pagamento.getMetodo())

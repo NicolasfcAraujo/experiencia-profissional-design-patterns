@@ -1,10 +1,14 @@
 package com.payments.checkout.controller;
 
+import com.payments.checkout.dto.PagamentoHistoricoResponse;
 import com.payments.checkout.dto.PagamentoRequest;
 import com.payments.checkout.dto.PagamentoResponse;
 import com.payments.checkout.facade.PagamentoFacade;
+import com.payments.checkout.model.Metodo;
 import com.payments.checkout.model.ResultadoPagamento;
 import jakarta.validation.Valid;
+import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,5 +32,15 @@ public class PagamentoController {
     public PagamentoResponse pagar(@Valid @RequestBody PagamentoRequest request) {
         ResultadoPagamento resultado = facade.pagar(request.paraDominio());
         return PagamentoResponse.de(resultado);
+    }
+
+    @GetMapping
+    public List<PagamentoHistoricoResponse> historico() {
+        return facade.historico().stream().map(PagamentoHistoricoResponse::de).toList();
+    }
+
+    @GetMapping("/metodos")
+    public List<Metodo> metodos() {
+        return facade.metodosSuportados();
     }
 }
