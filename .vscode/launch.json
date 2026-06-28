@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Backend: CheckoutApplication",
+      "request": "launch",
+      "mainClass": "com.payments.checkout.CheckoutApplication",
+      "projectName": "checkout",
+      "cwd": "${workspaceFolder}/apps/checkout"
+    }
+  ]
+}
